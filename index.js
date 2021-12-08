@@ -25,21 +25,38 @@ let createTimeInEvent = function(dateStamp){
         hour: hourTime,
         date: day
     }
-    return this.timeInEvents.push(punchInTime)
+    this.timeInEvents.push(punchInTime)
+    return this
 }
 
 let createTimeOutEvent = function(dateStamp){
     let splitDate = dateStamp.split(' ')
-    let hourTime = parseInt(splitDate[1])
-    let day = splitDate[0]
+    let hourTimes = parseInt(splitDate[1])
+    let dayTime = splitDate[0]
     const punchOutTime = {
         type: "TimeOut",
-        hour: hourTime,
-        date: day
+        hour: hourTimes,
+        date: dayTime
     }
-    return this.timeInEvents.push(punchInTime)
+    this.timeOutEvents.push(punchOutTime)
+    return this 
 }
-
+function hoursWorkedOnDate(dateStamp){
+    let timeInDate = this.timeInEvents.find((object) => object.date === dateStamp);
+    let timeOutDate = this.timeOutEvents.find((object) => object.date === dateStamp);
+   
+      return timeOutDate.hour/100 - timeInDate.hour/100
+}
+function wagesEarnedOnDate(dateStamp){
+    let hoursDated = hoursWorkedOnDate.call(this, dateStamp)
+    * this.payPerHour
+    return parseFloat(hoursDated.toString())
+} 
+function findEmployeeByFirstName(srcArray, firstName){
+    if(srcArray.firstName === firstName){
+        return 
+    }
+}
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
@@ -61,3 +78,11 @@ const allWagesFor = function () {
     return payable
 }
 
+function calculatePayroll(arrayRecord){
+    const payRollDates = this.timeInEvents.map(function(record){return record.date})
+    
+    const payRoll = payRollDates.reduce(function(pay, one){
+        return pay + allWagesFor.call(one)
+    }, 0)
+    return payRoll
+}
