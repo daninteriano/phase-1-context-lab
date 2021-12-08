@@ -1,4 +1,44 @@
 /* Your Code Here */
+let createEmployeeRecord = function(array){
+    return  {  
+    firstName: array[0],
+    familyName: array[1],
+    title: array[2],
+    payPerHour: array[3],
+    timeInEvents: [],
+    timeOutEvents: []
+    }
+}
+
+
+
+function createEmployeeRecords(array){
+    return array.map((item) => { return createEmployeeRecord(item)})
+}
+
+let createTimeInEvent = function(dateStamp){
+    let splitDate = dateStamp.split(' ')
+    let hourTime = parseInt(splitDate[1])
+    let day = splitDate[0]
+    const punchInTime = {
+        type: "TimeIn",
+        hour: hourTime,
+        date: day
+    }
+    return this.timeInEvents.push(punchInTime)
+}
+
+let createTimeOutEvent = function(dateStamp){
+    let splitDate = dateStamp.split(' ')
+    let hourTime = parseInt(splitDate[1])
+    let day = splitDate[0]
+    const punchOutTime = {
+        type: "TimeOut",
+        hour: hourTime,
+        date: day
+    }
+    return this.timeInEvents.push(punchInTime)
+}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
