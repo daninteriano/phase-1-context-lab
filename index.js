@@ -53,9 +53,7 @@ function wagesEarnedOnDate(dateStamp){
     return parseFloat(hoursDated.toString())
 } 
 function findEmployeeByFirstName(srcArray, firstName){
-    if(srcArray.firstName === firstName){
-        return 
-    }
+    return srcArray.find(function(record){return record.firstName === firstName})
 }
 /*
  We're giving you this function. Take a look at it, you might see some usage
@@ -79,10 +77,10 @@ const allWagesFor = function () {
 }
 
 function calculatePayroll(arrayRecord){
-    const payRollDates = this.timeInEvents.map(function(record){return record.date})
+    //const payRollDates = this.timeInEvents.map(function(record){return record.date})
     
-    const payRoll = payRollDates.reduce(function(pay, one){
+    return arrayRecord.reduce(function(pay, one){
         return pay + allWagesFor.call(one)
     }, 0)
-    return payRoll
+    //return payRoll
 }
